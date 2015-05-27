@@ -4,6 +4,7 @@ gem 'bundler'
 gem 'rake'
 
 gem 'lotusrb', '0.3.2'
+gem 'slim'
 
 gem 'faraday'
 gem 'faraday_middleware'
