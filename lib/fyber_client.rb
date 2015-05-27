@@ -2,6 +2,7 @@ require 'faraday'
 require 'faraday_middleware/parse_oj'
 
 require_relative 'fyber_client/params'
+require_relative 'fyber_client/offer'
 
 module FyberClient
   class << self
@@ -11,7 +12,9 @@ module FyberClient
       response = connection.get('offers.json', params.to_h)
 
       if response.status == 200
-        response.body
+        response.body.fetch(:offers).map do |offer_attributes|
+          Offer.new(offer_attributes)
+        end
       else
         raise APIError, "Fyber responded with #{response.status} (#{response.body})"
       end

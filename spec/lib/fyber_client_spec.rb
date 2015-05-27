@@ -1,11 +1,27 @@
 RSpec.describe FyberClient do
   describe '.get' do
+    let(:response_body) do
+      Oj.dump(
+        message: 'Ok',
+        offers: [
+          {
+            title: 'Some title',
+            thumbnail: {
+              lowres: 'http://example.com/lowres.jpg',
+              hires:  'http://example.com/hires.jpg'
+            },
+            payout: 12345
+          }
+        ]
+      )
+    end
+    
     before(:each) do
       connection = Faraday.new do |builder|
         builder.response :oj
         builder.adapter  :test do |stub|
           stub.get('offers.json') do
-            [200, {}, Oj.dump(message: 'Ok', offers: [])]
+            [200, {}, response_body]
           end
         end
       end
@@ -18,7 +34,11 @@ RSpec.describe FyberClient do
     end
     
     it 'calls Fyber with the passed params' do
-      expect(subject.get(params)).to eq(message: 'Ok', offers: [])
+      offer, * = subject.get(params)
+
+      expect(offer.title).to eq('Some title')
+      expect(offer.thumbnail).to eq('http://example.com/lowres.jpg')
+      expect(offer.payout).to eq(12345)
     end
   end
 end
