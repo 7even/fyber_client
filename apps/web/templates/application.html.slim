@@ -2,6 +2,10 @@ doctype html
 html
   head
     title Fyber client
+    link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"
   
   body
-    == yield
+    .container
+      .row
+        .col-md-12
+          == yield
