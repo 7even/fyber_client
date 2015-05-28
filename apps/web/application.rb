@@ -192,7 +192,7 @@ module Web
         "default-src 'none'",
         "script-src 'self'",
         "connect-src 'self'",
-        "img-src 'self' *.sponsorpay.com",
+        "img-src 'self' http://*.sponsorpay.com",
         "style-src 'self' maxcdn.bootstrapcdn.com",
         "font-src 'self' maxcdn.bootstrapcdn.com"
       ].join('; ')
