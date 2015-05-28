@@ -2,13 +2,13 @@
   form.form-inline method="get" action="/results"
     .col-md-2
       .form-group
-        input.form-control type="text" name="uid" placeholder="uid" value=params[:uid]
+        input.form-control type="text" name="uid" placeholder="uid" required="true" value=params[:uid]
     .col-md-2
       .form-group
         input.form-control type="text" name="pub0" placeholder="pub0" value=params[:pub0]
     .col-md-2
       .form-group
-        input.form-control type="text" name="page" placeholder="page" value=params[:page]
+        input.form-control type="text" name="page" placeholder="page" required="true" value=params[:page]
     .col-md-2
       .form-group
         button.btn.btn-default type="submit" Get offers
