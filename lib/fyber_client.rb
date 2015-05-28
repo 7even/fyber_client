@@ -9,7 +9,7 @@ module FyberClient
     BASE_URL = 'http://api.sponsorpay.com/feed/v1'.freeze
     
     def get(params)
-      response = connection.get('offers.json', params.to_h)
+      response = connection.get('offers.json', params)
 
       if response.status != 200
         raise APIError, "Fyber responded with #{response.status} (#{response.body})"

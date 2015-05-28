@@ -18,6 +18,10 @@ module FyberClient
     def to_h
       params.merge(hashkey: hashkey)
     end
+
+    def each(&block)
+      to_h.each(&block)
+    end
     
   private
     def hashkey
