@@ -1,4 +1,15 @@
-- offers.each do |offer|
-  img src=offer.thumbnail
-  h3 = offer.title
-  p = offer.payout
+== render partial: 'offers/form'
+
+- if offers.empty?
+  h3 No offers available
+- else
+  - offers.each do |offer|
+    .well
+      .row
+        img.img-thumbnail.col-md-1 src=offer.thumbnail
+        .col-md-5
+          p
+            = offer.title
+            = " (payout: #{offer.payout})"
+      
+
